@@ -35,4 +35,22 @@ Ready to go!
 
 ## Lab
 
+Unless you have any log files by your self you will get some handed to you before the lab.
+
+1. Copy the file(s) into logs and name it access.log, this will cause logstash to read the entire file into elasticsearch.
+2. Check the dashboard, what do you see? what can we do now, can you think of something to graph?
+   Basically, the only thing we can do now is to search the files not much more.
+   
+3. Next we need to extract parts of the file into key value pairs. I.e IP address, statuscodes, url, response time etc
+   In logstash, this is done with grok patterns. 
+   Hint: Combined apache log + response time
+   
+   We also need to extract the real time from the logs, the current time used is when it was read from the file.
+   Hint: date filter
+   
+   
+
+
 WIP!
+
+ * Grok message (hint combined apache log) + response time
