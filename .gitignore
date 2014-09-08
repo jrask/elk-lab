@@ -1,2 +1,3 @@
 data
+logs/access.log
 .DS_Store
