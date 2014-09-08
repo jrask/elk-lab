@@ -11,15 +11,16 @@ ElasticSearch and kibana comes embedded with logstash so that is good enough for
 
 **File inputs need absolute paths, open logstash/logstash.conf and edit paths to input files.**
 
-Goto elk-lab directory and start with 
+Goto elk-lab directory and start with:
+ 
     logstash agent -f logstash/logstash.conf --debug -- web
-
 
 Open a browser and goto http://localhost:9292/index.html. Somewhere in the text on the kibana default page is a link to a default logstash dashboard, click that link.
 
 You should now see an empty dashboard, it might say that there are no indices in the specified time period which is fine since we have not stored anything.
 
-in elk-lab directory, write 
+in elk-lab directory, write:
+
     echo 'Hello world' >> logs/access.log
 	
 Refresh dashboard and you should have a green line in the histogram and an event below. 
@@ -51,7 +52,8 @@ Unless you have any log files by your self you will get some handed to you befor
 Collectd (https://collectd.org/) can be use to collect various stats from a host and store or forward that to a central monitoring point. Logstash comes with built-in support for collected in the collectd input plugin.
 
 configure logstash to listen to collectd:
-   input {
+
+    input {
        udp {
            host => "127.0.0.1"
            port => 25826
@@ -59,22 +61,29 @@ configure logstash to listen to collectd:
            codec => collectd { }
            type => "collectd"
        }
-   }
+    }
 
 install collectd:
-   brew install collectd      
+
+    brew install collectd      
 
 configure collectd:
+
     edit collectd/collectd.conf
     
 start collectd in foreground:
-   /usr/local/Cellar/collectd/5.4.1/sbin/collectd -C collectd/collectd.conf -f
+
+    /usr/local/Cellar/collectd/5.4.1/sbin/collectd -C collectd/collectd.conf -f
    
 Collectd will by default report every 10th seconds. Now open the kibana UI and very that logstash events gets reported.
 
-Lab1: Add a histogram shown disk free
-Lab2: Add a histogram over load
-Lab3: Add a histogram over incomming (rx) and outgoing (tx) network traffic
+The collectd-tg tool (http://collectd.org/documentation/manpages/collectd-tg.1.shtml) can be used to generate load data.
+
+    collectd-tg -n 10000 -H 2 -i 10 -d 127.0.0.1 -D 25826
+  
+* Lab1: Add a histogram shown disk free
+* Lab2: Add a histogram over load
+* Lab3: Add a histogram over incomming (rx) and outgoing (tx) network traffic
 
 ### Running kibana separately
    Install Kibana (https://github.com/elasticsearch/kibana)
