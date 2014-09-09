@@ -4,8 +4,17 @@ Logstash, Elasticsearch and kibana lab for Jayway devops team
 
 
 ##Preparations
+
+1. Install logstash
+
+    brew install logstash
+	
+	sudo apt-get install logstash
+
 ElasticSearch and kibana comes embedded with logstash so that is good enough for this lab.
 
+
+2. clone this repo
 
 ##Test setup
 
