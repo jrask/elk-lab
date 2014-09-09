@@ -59,7 +59,7 @@ Delete the index! curl -XDELETE http://localhost:9200/logstash-nginx-2014.09.08
 ## Extra Labs
 
 ### Collectd
-Collectd (https://collectd.org/) can be use to collect various stats from a host and store or forward that to a central monitoring point. Logstash comes with built-in support for collected in the collectd input plugin.
+[Collectd](https://collectd.org/) can be use to collect various stats from a host and store or forward that to a central monitoring point. Logstash comes with built-in support for collectd in the [collectd input plugin](http://logstash.net/docs/1.4.2/inputs/collectd).
 
 configure logstash to listen to collectd:
 
@@ -87,7 +87,7 @@ start collectd in foreground:
    
 Collectd will by default report every 10th seconds. Now open the kibana UI and very that logstash events gets reported.
 
-The collectd-tg tool (http://collectd.org/documentation/manpages/collectd-tg.1.shtml) can be used to generate load data.
+The [collectd-tg] (http://collectd.org/documentation/manpages/collectd-tg.1.shtml) tool can be used to generate load data.
 
     collectd-tg -n 10000 -H 2 -i 10 -d 127.0.0.1 -D 25826
   
